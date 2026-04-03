@@ -1,5 +1,4 @@
 import datetime
-
 from pydantic import BaseModel, Field
 from .category import  CategoryResponse
 from typing import Optional
@@ -22,11 +21,11 @@ class ProductResponse(BaseModel):
     price: float
     category_id: int
     image_url: Optional[str]
-    created_at: datetime.datetime.utcnow()
-    category: CategoryResponse(..., description="Category details")
+    created_at: datetime.datetime = Field(default_factory=datetime.datetime.utcnow)
+    category:CategoryResponse = Field(..., description="Category details")
 
     class Config:
-        from_attributes =True
+        from_attributes=True
 
 class ProductListResponse(BaseModel):
     products: list[ProductResponse]

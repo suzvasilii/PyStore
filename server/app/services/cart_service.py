@@ -1,7 +1,5 @@
-from itertools import product
-
 from sqlalchemy.orm import Session
-from typing import List, Dict
+from typing import Dict
 from ..repositories.product_repository import ProductRepository
 from ..schemas.cart import CartItem, CartResponse, CartItemCreate, CartItemUpdate
 from fastapi import HTTPException, status
@@ -66,4 +64,4 @@ class CartService:
                 total_price+=subtotal
                 items_count+=quantity
         return CartResponse(items=cart_items, total=round(total_price),
-                            items_count=items_countc)
+                            items_count=items_count)
